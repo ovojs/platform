@@ -1,0 +1,19 @@
+{
+  "name": "@ovojs/db",
+  "version": "0.0.1",
+  "private": true,
+  "main": "db.ts",
+  "scripts": {
+    "generate": "drizzle-kit generate",
+    "migrate": "drizzle-kit migrate",
+    "studio": "drizzle-kit studio"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.14.0",
+    "@ovojs/runtime": "workspace:*",
+    "drizzle-orm": "^0.34.1"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.25.0"
+  }
+}
