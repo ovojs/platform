@@ -1,13 +1,22 @@
-import { z } from "zod";
+import { type Database } from "@ovojs/db";
+import { type Metrics } from "@ovojs/metrics";
+import type { Env } from "@ovojs/runtime";
 
-const zEnv = z.object({});
-
-export type Env = z.infer<typeof zEnv>;
+export type Service = {
+  db: {
+    primary: Database,
+    readonly: Database,
+  },
+  metrics: Metrics,
+};
 
 export interface HonoEnv {
   Bindings: Env,
   Variables: {
     isolateId: string;
+    isolateCreatedAt: number;
     requestId: string;
+    requestCreatedAt: number;
+    service: Service;
   }
 }

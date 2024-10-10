@@ -1,11 +1,13 @@
 {
-  "name": "api",
+  "name": "@ovojs/api",
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy --minify"
   },
   "dependencies": {
     "@hono/zod-openapi": "^0.16.4",
+    "@ovojs/db": "workspace:*",
+    "@ovojs/metrics": "workspace:*",
     "hono": "^4.6.3",
     "zod": "^3.23.8"
   },

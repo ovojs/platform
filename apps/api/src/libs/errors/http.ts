@@ -4,7 +4,7 @@ import type { StatusCode } from "hono/utils/http-status";
 import { HTTPException } from "hono/http-exception";
 import { z } from "zod";
 
-const zOvOError = z.object({
+const zAPIError = z.object({
   code: z.number().int().openapi({
     description: "A machine readable error code",
     example: 100000,
@@ -23,20 +23,22 @@ const zOvOError = z.object({
   }),
 });
 
-export type OvOError = z.infer<typeof zOvOError>;
+export type APIError = z.infer<typeof zAPIError>;
 
-export class OvOHTTPException extends HTTPException {
-  readonly code: number;
-  constructor (message: string, code?: number) {
-    code ??= 500;
-    super(((code >= 100 && code <= 511) ? code : 500) as StatusCode, { message });
-    this.code = code;
+export class APIException extends HTTPException {
+  constructor (
+    readonly code: number, 
+    readonly message: string,
+    readonly reference?: string,
+  ) {
+    const status = ((code >= 100 && code <= 511) ? code : 500) as StatusCode;
+    super(status, { message });
   }
 }
 
 export function handleError(e: Error, c: Context<HonoEnv>): Response {
-  if (e instanceof OvOHTTPException) {
-    return c.json<OvOError>({
+  if (e instanceof APIException) {
+    return c.json<APIError>({
       code: e.code,
       message: e.message,
       reference: `https://ovojs.dev/docs/errors/${e.code}`,
@@ -45,7 +47,7 @@ export function handleError(e: Error, c: Context<HonoEnv>): Response {
   }
 
   if (e instanceof HTTPException) {
-    return c.json<OvOError>({
+    return c.json<APIError>({
       code: e.status,
       message: e.message,
       reference: `https://ovojs.dev/docs/errors/${e.status}`,
@@ -53,10 +55,10 @@ export function handleError(e: Error, c: Context<HonoEnv>): Response {
     }, e.status);
   }
 
-  return c.json<OvOError>({
+  return c.json<APIError>({
     code: 500,
     message: e.message ?? "Something unexpected happened.",
-    reference: `https://ovojs.dev/docs/errors/500}`,
+    reference: `https://ovojs.dev/docs/errors/500`,
     requestId: c.get("requestId"),
-  });
+  }, 500);
 }

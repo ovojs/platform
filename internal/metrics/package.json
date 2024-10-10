@@ -1,0 +1,10 @@
+{
+  "name": "@ovojs/metrics",
+  "version": "0.0.1",
+  "private": true,
+  "main": "src/metrics.ts",
+  "dependencies": {
+    "@ovojs/runtime": "workspace:*",
+    "zod": "^3.23.8"
+  }
+}

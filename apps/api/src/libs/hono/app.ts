@@ -1,6 +1,7 @@
 import { OpenAPIHono } from "@hono/zod-openapi";
 import { handleError } from "$libs/errors/http";
 import type { HonoEnv } from "./env";
+import type { Context } from "hono";
 
 export function createApp() {
   const app = new OpenAPIHono<HonoEnv>();
@@ -27,3 +28,6 @@ export function createApp() {
   });
   return app;
 }
+
+export type App = ReturnType<typeof createApp>;
+export type Ctx = Context<HonoEnv>;

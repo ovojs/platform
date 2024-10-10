@@ -3,8 +3,12 @@ import { z } from "zod";
 
 export const env = createEnv({
   server: {
-    TURSO_DATABASE_URL: z.string(),
-    TURSO_AUTH_TOKEN: z.string(),
+    DATABASE_URL: z.string(),
+    DATABASE_TOKEN: z.string(),
+    DATABASE_URL_READONLY: z.string(),
+    DADABASE_TOKEN_READONLY: z.string(),
   },
   runtimeEnv: process.env,
 });
+
+export type Env = typeof env;
