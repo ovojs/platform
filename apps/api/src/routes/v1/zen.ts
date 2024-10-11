@@ -22,7 +22,7 @@ export type Route = typeof route;
 export function registerV1Zen(app: App) {
   app.openapi(route, async (c) => {
     return c.text(`
-  OvO - build something fun
+  OvO - Build something fun.
 
   requestId: ${c.get("requestId")}
    `);

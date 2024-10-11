@@ -20,8 +20,8 @@ export function openDB(env: Env, writable?: boolean): Database {
   }
   if (!db) {
     const client = createClient({
-      url: env.DATABASE_URL,
-      authToken: env.DATABASE_TOKEN,
+      url: env.DATABASE_URL_READONLY,
+      authToken: env.DADABASE_TOKEN_READONLY,
     });
     db = drizzle(client);
   }

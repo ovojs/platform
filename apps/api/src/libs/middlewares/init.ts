@@ -28,8 +28,7 @@ export function init(): MiddlewareHandler<HonoEnv> {
       db: { primary, readonly },
       metrics,
     });
-
-    c.req.raw.headers.set("x-request-id", requestId);
+    
     await next();
   }
 }
