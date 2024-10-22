@@ -5,25 +5,23 @@ import * as schema from "./schema";
 export type Database = LibSQLDatabase<typeof schema>;
 
 let db: Database;
-let db_writable: Database;
+let db_readonly: Database;
 
-export function openDB(env: Env, writable?: boolean): Database {
-  if (writable) {
-    if (!db_writable) {
-      const client = createClient({
-        url: env.DATABASE_URL,
-        authToken: env.DATABASE_TOKEN,
-      });
-      db_writable = drizzle(client);
-    }
-    return db_writable;
-  }
-  if (!db) {
-    const client = createClient({
+export function openDB(env: Env, readonly?: boolean): Database {
+  if (readonly) {
+    if (!env.DATABASE_URL_READONLY || !env.DADABASE_TOKEN_READONLY)
+      throw new Error("Bad database URL");
+    db_readonly = drizzle(createClient({
       url: env.DATABASE_URL_READONLY,
       authToken: env.DADABASE_TOKEN_READONLY,
-    });
-    db = drizzle(client);
+    }));
+    return db_readonly;
   }
+  if (!env.DATABASE_URL || !env.DATABASE_TOKEN)
+    throw new Error("Bad database URL");
+  db = drizzle(createClient({
+    url: env.DATABASE_URL,
+    authToken: env.DATABASE_TOKEN,
+  }));
   return db;
 }

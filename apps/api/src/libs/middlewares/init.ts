@@ -20,8 +20,8 @@ export function init(): MiddlewareHandler<HonoEnv> {
     c.set("requestId", requestId);
     c.set("requestCreatedAt", Date.now());
 
-    const primary = openDB(c.env, true);
-    const readonly = openDB(c.env);
+    const primary = openDB(c.env);
+    const readonly = openDB(c.env, true);
     const metrics = openMetrics(c.env);
 
     c.set("service", {
