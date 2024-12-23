@@ -1,0 +1,12 @@
+[workspace]
+members = [
+  "crates/*",
+  "apps/web/src-tauri"
+]
+resolver = "2"
+
+[workspace.package]
+authors = ["The OvO Team"]
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/ovojs/platform"

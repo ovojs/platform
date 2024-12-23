@@ -1,0 +1,13 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "@ovo-apps/desktop#tauri": {
+      "outputs": [".svelte-kit/**"],
+      "dependsOn": ["@ovojs/api#build"],
+      "persistent": true
+    },
+    "@ovojs/api#build": {
+      "outputs": ["dist/**"]
+    }
+  }
+}

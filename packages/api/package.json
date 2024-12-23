@@ -1,0 +1,11 @@
+{
+  "name": "@ovojs/api",
+  "version": "0.0.1",
+  "description": "Bridging APIs to the OvO core for OvO's desktop App",
+  "scripts": {
+    "build": "tsup"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.5"
+  }
+}
