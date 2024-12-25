@@ -1,0 +1,9 @@
+{
+  "name": "@ovo-apps/tests",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "@ovo-apps/api": "workspace:*",
+    "@types/bun": "latest"
+  }
+}
