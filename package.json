@@ -8,7 +8,8 @@
   ],
   "packageManager": "bun@1.0.0^",
   "scripts": {
-    "dev:desktop": "turbo run tauri -- dev"
+    "dev:desktop": "turbo run tauri -- dev",
+    "build:desktop": "turbo run tauri -- build"
   },
   "devDependencies": {
     "@types/bun": "latest",

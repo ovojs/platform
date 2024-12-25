@@ -3,10 +3,10 @@
   "tasks": {
     "@ovo-apps/desktop#tauri": {
       "outputs": [".svelte-kit/**"],
-      "dependsOn": ["@ovojs/api#build"],
+      "dependsOn": ["@ovo-apps/api#build"],
       "persistent": true
     },
-    "@ovojs/api#build": {
+    "@ovo-apps/api#build": {
       "outputs": ["dist/**"]
     }
   }

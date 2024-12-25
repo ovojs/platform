@@ -1,5 +1,5 @@
 {
-  "name": "@ovojs/api",
+  "name": "@ovo-apps/api",
   "version": "0.0.1",
   "description": "Bridging APIs to the OvO core for OvO's desktop App",
   "scripts": {
